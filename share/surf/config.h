@@ -108,6 +108,12 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
         } \
 }
 
+#define YT2() {\
+        .v = (const char *[]){ "/bin/sh", "-c", \
+             "st -e \
+			 yt $(xprop -id $0 _SURF_URI | cut -d \\\" -f 2)", winid, NULL \
+        } \
+}
 
 
 /* styles */
@@ -138,7 +144,7 @@ static SiteSpecific certs[] = {
  */
 static Key keys[] = {
 	/* modifier              keyval          function    arg */
-	{ MODKEY,                GDK_KEY_w,      spawn,      YT() },
+	{ MODKEY,                GDK_KEY_w,      spawn,      YT2() },
 	{ MODKEY,                GDK_KEY_g,      spawn,      SETPROP("_SURF_URI", "_SURF_GO", PROMPT_GO) },
 	{ MODKEY,                GDK_KEY_f,      spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
 	{ MODKEY,                GDK_KEY_slash,  spawn,      SETPROP("_SURF_FIND", "_SURF_FIND", PROMPT_FIND) },
@@ -208,5 +214,6 @@ static Button buttons[] = {
 #define HOMEPAGE "https://www.google.com"
 
 static SearchEngine searchengines[] = {
-	{ "g",   "http://www.google.de/search?q=%s"   },
+	{ "g",   "http://www.google.com/search?q=%s"                   },
+	{ "d",   "http://www.duckduckgo.com/?q=%s"                     },
 };
