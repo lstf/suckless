@@ -1,0 +1,5 @@
+#!/bin/bash
+
+URL=`xsel -ob | head -n1`
+
+mpv $URL
